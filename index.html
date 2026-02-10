@@ -133,6 +133,7 @@
             display: flex;
             gap: 2.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -161,6 +162,175 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Resume link special styling in nav */
+        .nav-links a.resume-link {
+            background: linear-gradient(135deg, var(--highlight), #F59E0B);
+            color: var(--bg);
+            padding: 0.5rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .nav-links a.resume-link::after {
+            display: none;
+        }
+
+        .nav-links a.resume-link:hover {
+            background: linear-gradient(135deg, #F59E0B, var(--highlight));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 90vh;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            overflow: hidden;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--secondary);
+        }
+
+        .modal-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--accent-bright), var(--highlight));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-btn {
+            background: var(--primary);
+            border: 1px solid var(--border);
+            color: var(--text);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+            height: calc(90vh - 180px);
+            overflow-y: auto;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+            background: white;
+        }
+
+        .modal-footer {
+            padding: 1rem 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 1rem;
+            background: var(--secondary);
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            border: none;
+            text-align: center;
+        }
+
+        .modal-btn.download {
+            background: linear-gradient(135deg, var(--highlight), #F59E0B);
+            color: var(--bg);
+        }
+
+        .modal-btn.download:hover {
+            background: linear-gradient(135deg, #F59E0B, var(--highlight));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .modal-btn.open {
+            background: var(--accent);
+            color: white;
+        }
+
+        .modal-btn.open:hover {
+            background: var(--accent-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         /* Hero Section */
@@ -239,6 +409,8 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 0.95rem;
+            border: none;
+            background: none;
         }
 
         .btn-primary {
@@ -264,6 +436,20 @@
             border-color: var(--accent);
             background: rgba(59, 130, 246, 0.1);
             transform: translateY(-2px);
+        }
+
+        .btn-resume {
+            background: linear-gradient(135deg, var(--highlight), #F59E0B);
+            color: var(--bg);
+            border: 2px solid var(--highlight);
+            font-weight: 700;
+        }
+
+        .btn-resume:hover {
+            background: linear-gradient(135deg, #F59E0B, var(--highlight));
+            border-color: #F59E0B;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
         }
 
         .hero-image {
@@ -914,6 +1100,14 @@
             .section-title {
                 font-size: 2.5rem;
             }
+
+            .modal-content {
+                width: 95%;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 640px) {
@@ -950,6 +1144,14 @@
             .project-info {
                 padding: 2rem;
             }
+
+            .modal-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
         }
 
         /* Scroll animations */
@@ -981,10 +1183,32 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="#" class="resume-link" id="navResumeBtn">📄 Resume</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+
+    <!-- Resume Preview Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>My Resume</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <iframe src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Vishwadip682005/portfolio/main/Vishwadip_resume.pdf&embedded=true"></iframe>
+            </div>
+            <div class="modal-footer">
+                <a href="https://raw.githubusercontent.com/Vishwadip682005/portfolio/main/Vishwadip_resume.pdf" download="Vishwadip_Chaudhary_Resume.pdf" class="modal-btn download">
+                    📥 Download PDF
+                </a>
+                <a href="https://raw.githubusercontent.com/Vishwadip682005/portfolio/main/Vishwadip_resume.pdf" target="_blank" class="modal-btn open">
+                    🔗 Open in New Tab
+                </a>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="about">
@@ -996,6 +1220,7 @@
                     <p>Building innovative web solutions with modern technologies. Specializing in full-stack development, AI integration, and creating seamless user experiences.</p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <button class="btn btn-resume" id="heroResumeBtn">📄 View Resume</button>
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
                     </div>
                 </div>
@@ -1307,11 +1532,51 @@
     </footer>
 
     <script>
+        // Modal functionality
+        const modal = document.getElementById('resumeModal');
+        const navResumeBtn = document.getElementById('navResumeBtn');
+        const heroResumeBtn = document.getElementById('heroResumeBtn');
+        const closeModal = document.getElementById('closeModal');
+
+        // Open modal
+        function openModal(e) {
+            e.preventDefault();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModalFunc() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        navResumeBtn.addEventListener('click', openModal);
+        heroResumeBtn.addEventListener('click', openModal);
+        closeModal.addEventListener('click', closeModalFunc);
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModalFunc();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModalFunc();
+            }
+        });
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || !href.startsWith('#')) return;
+                
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
